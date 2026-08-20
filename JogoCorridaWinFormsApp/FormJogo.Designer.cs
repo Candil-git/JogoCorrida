@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormJogoCorrida));
             PicCarro = new PictureBox();
             PicObstaculo = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)PicCarro).BeginInit();
@@ -37,21 +36,22 @@
             // 
             // PicCarro
             // 
-            PicCarro.BackColor = SystemColors.ActiveCaptionText;
-            PicCarro.BackgroundImage = Properties.Resources.CarroCorrida;
+            PicCarro.BackColor = Color.Transparent;
+            PicCarro.BackgroundImage = Properties.Resources.Carro_Corrida_Cinza;
             PicCarro.BackgroundImageLayout = ImageLayout.Stretch;
-            PicCarro.Location = new Point(312, 532);
+            PicCarro.Location = new Point(289, 532);
             PicCarro.Name = "PicCarro";
-            PicCarro.Size = new Size(100, 103);
+            PicCarro.Size = new Size(103, 113);
             PicCarro.TabIndex = 0;
             PicCarro.TabStop = false;
+            PicCarro.Click += PicCarro_Click;
             // 
             // PicObstaculo
             // 
-            PicObstaculo.BackColor = SystemColors.ActiveCaptionText;
-            PicObstaculo.BackgroundImage = Properties.Resources.Obstaculo;
+            PicObstaculo.BackColor = Color.Transparent;
+            PicObstaculo.BackgroundImage = Properties.Resources.Carro_Obstaculo_Laranja;
             PicObstaculo.BackgroundImageLayout = ImageLayout.Stretch;
-            PicObstaculo.Location = new Point(108, 59);
+            PicObstaculo.Location = new Point(160, 26);
             PicObstaculo.Name = "PicObstaculo";
             PicObstaculo.Size = new Size(100, 103);
             PicObstaculo.TabIndex = 1;
@@ -62,11 +62,13 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
-            ClientSize = new Size(549, 657);
+            BackgroundImage = Properties.Resources.Pista_Corrida_SemArvore;
+            BackgroundImageLayout = ImageLayout.Stretch;
+            ClientSize = new Size(575, 657);
             Controls.Add(PicObstaculo);
             Controls.Add(PicCarro);
             Name = "FormJogoCorrida";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "JogoCorrida";
             ((System.ComponentModel.ISupportInitialize)PicCarro).EndInit();
             ((System.ComponentModel.ISupportInitialize)PicObstaculo).EndInit();

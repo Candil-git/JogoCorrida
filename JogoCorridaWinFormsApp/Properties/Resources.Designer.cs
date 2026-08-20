@@ -63,6 +63,26 @@ namespace JogoCorridaWinFormsApp.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Carro_Corrida_Cinza {
+            get {
+                object obj = ResourceManager.GetObject("Carro_Corrida_Cinza", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Carro_Obstaculo_Laranja {
+            get {
+                object obj = ResourceManager.GetObject("Carro_Obstaculo_Laranja", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap CarroCorrida {
             get {
                 object obj = ResourceManager.GetObject("CarroCorrida", resourceCulture);
@@ -76,6 +96,36 @@ namespace JogoCorridaWinFormsApp.Properties {
         internal static System.Drawing.Bitmap Obstaculo {
             get {
                 object obj = ResourceManager.GetObject("Obstaculo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Pista_Corrida_ComArvore {
+            get {
+                object obj = ResourceManager.GetObject("Pista_Corrida_ComArvore", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Pista_Corrida_SemArvore {
+            get {
+                object obj = ResourceManager.GetObject("Pista_Corrida_SemArvore", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap PistaCorrida {
+            get {
+                object obj = ResourceManager.GetObject("PistaCorrida", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

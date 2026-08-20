@@ -11,5 +11,10 @@ namespace JogoCorridaWinFormsApp
         {
 
         }
+
+        private void PicCarro_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
