@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             PicCarro = new PictureBox();
             PicObstaculo = new PictureBox();
+            TimerJogo = new System.Windows.Forms.Timer(components);
             ((System.ComponentModel.ISupportInitialize)PicCarro).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PicObstaculo).BeginInit();
             SuspendLayout();
@@ -58,6 +60,10 @@
             PicObstaculo.TabStop = false;
             PicObstaculo.Click += PicObstaculo_Click;
             // 
+            // TimerJogo
+            // 
+            TimerJogo.Tick += TimerJogo_Tick;
+            // 
             // FormJogoCorrida
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -70,6 +76,7 @@
             Name = "FormJogoCorrida";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "JogoCorrida";
+            KeyDown += FormJogoCorrida_KeyDown;
             ((System.ComponentModel.ISupportInitialize)PicCarro).EndInit();
             ((System.ComponentModel.ISupportInitialize)PicObstaculo).EndInit();
             ResumeLayout(false);
@@ -79,5 +86,6 @@
 
         private PictureBox PicCarro;
         private PictureBox PicObstaculo;
+        private System.Windows.Forms.Timer TimerJogo;
     }
 }
