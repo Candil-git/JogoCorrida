@@ -11,18 +11,26 @@ namespace JogoCorridaWinFormsApp
         public FormJogoCorrida()
         {
             InitializeComponent();
+
+            // Faz parar de piscar
+            this.DoubleBuffered = true;
+            this.SetStyle(ControlStyles.AllPaintingInWmPaint |
+                          ControlStyles.UserPaint |
+                          ControlStyles.OptimizedDoubleBuffer, true);
+            this.UpdateStyles();
+
             jogo = new Jogo
             {
-                Faixa1Inicio = 2,
+                Faixa1Inicio = 129,
                 Faixa1Fim = 198,
-                Faixa2Inicio = 202,
-                Faixa2Fim = 398
+                Faixa2Inicio = 258,
+                Faixa2Fim = 325
             };
 
-            jogo.YMax = 550;
+            jogo.YMax = 696;
             jogo.IniciarJogo();
             jogo.Carro.PosicaoX = jogo.PosicionaObjeto(1);
-            jogo.Velociade = 900;
+            jogo.Velociade = 50;
 
             foreach (var ob in jogo.Obstaculos) // CRIANDO OBSTACULOS
             {
@@ -30,22 +38,11 @@ namespace JogoCorridaWinFormsApp
                 picOb.BackColor = Color.Transparent;
                 picOb.BackgroundImage = Properties.Resources.Carro_Obstaculo_Laranja;
                 picOb.BackgroundImageLayout = ImageLayout.Stretch;
+                picOb.Size = new Size(PicCarro.Width, PicCarro.Height);
                 pictureBoxes.Add(picOb); // ADICIONA A IMAGEM NA LISTA INTERNA
                 this.Controls.Add(picOb); // ADICIONA A IMAGEM NO FORMULARIO
             }
             TimerJogo.Enabled = true;
-        }
-
-
-
-        private void PicObstaculo_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void PicCarro_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void FormJogoCorrida_KeyDown(object sender, KeyEventArgs e)
@@ -61,8 +58,6 @@ namespace JogoCorridaWinFormsApp
 
                 jogo.Carro.PosicaoX = jogo.PosicionaObjeto(2);
             }
-
-
         }
 
         private void TimerJogo_Tick(object sender, EventArgs e)
@@ -72,24 +67,31 @@ namespace JogoCorridaWinFormsApp
 
             foreach (var ob in jogo.Obstaculos)
             {
-                if (ob.PosicaoY >= 0)
+                 if (i < pictureBoxes.Count)
                 {
+                    pictureBoxes[i].Visible = true; // PROBLEMA NO CARRO DO LADO ESQUERDO TRAVADO
                     pictureBoxes[i].Location = new Point(ob.PosicaoX, ob.PosicaoY);
                 }
+                else
+                {
+                    pictureBoxes[i].Visible = false; 
+                }
+
                 i++;
             }
-                if((DateTime.Now - tempoUltimaMovimentaca).Milliseconds >= jogo.Velociade){
-                
+
+            if ((DateTime.Now - tempoUltimaMovimentaca).TotalMilliseconds >= jogo.Velociade)
+            {
                 tempoUltimaMovimentaca = DateTime.Now;
                 jogo.MovimentaObstaculos();
             }
+
             if (jogo.ChecarColisao())
             {
                 // GamerOver();
                 // TocarSom();
                 Application.Exit();
             }
-            Application.Exit();
         }
     }
 }
