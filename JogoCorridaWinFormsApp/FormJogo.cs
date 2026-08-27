@@ -1,4 +1,6 @@
 using JogoCorrida;
+using System.Drawing.Text;
+using System.Media;
 
 namespace JogoCorridaWinFormsApp
 {
@@ -8,9 +10,11 @@ namespace JogoCorridaWinFormsApp
         DateTime tempoUltimaMovimentaca = DateTime.Now;
         List<PictureBox> pictureBoxes = [];
 
-        public FormJogoCorrida()
+        public FormJogoCorrida(String Nivel)
         {
             InitializeComponent();
+
+            //SomJogoCorrida();
 
             // Faz parar de piscar
             this.DoubleBuffered = true;
@@ -30,7 +34,20 @@ namespace JogoCorridaWinFormsApp
             jogo.YMax = 696;
             jogo.IniciarJogo();
             jogo.Carro.PosicaoX = jogo.PosicionaObjeto(1);
-            jogo.Velociade = 50;
+            //jogo.Velociade = 50;
+
+            if(Nivel == "Facil")
+            {
+                jogo.Velociade = 100;
+
+            }else if (Nivel == "Medio")
+            {
+                jogo.Velociade = 150;
+            }
+            else
+            {
+                jogo.Velociade = 200;
+            }
 
             foreach (var ob in jogo.Obstaculos) // CRIANDO OBSTACULOS
             {
@@ -67,14 +84,14 @@ namespace JogoCorridaWinFormsApp
 
             foreach (var ob in jogo.Obstaculos)
             {
-                 if (i < pictureBoxes.Count)
+                if (i < pictureBoxes.Count)
                 {
                     pictureBoxes[i].Visible = true; // PROBLEMA NO CARRO DO LADO ESQUERDO TRAVADO
                     pictureBoxes[i].Location = new Point(ob.PosicaoX, ob.PosicaoY);
                 }
                 else
                 {
-                    pictureBoxes[i].Visible = false; 
+                    pictureBoxes[i].Visible = false;
                 }
 
                 i++;
@@ -88,10 +105,35 @@ namespace JogoCorridaWinFormsApp
 
             if (jogo.ChecarColisao())
             {
-                // GamerOver();
-                // TocarSom();
+                GamerOver();
                 Application.Exit();
             }
+
         }
+
+        private void GamerOver()
+        {
+            TimerJogo.Enabled = false;
+            // TocarSom();
+            Close();
+        }
+
     }
 }
+
+/*
+    private void SomJogoCorrida{
+        SoundPlayer sp = new SoundPlayer();
+        sp.SoundLocation = "caminho do arquivo do som";
+        sp.Play();
+
+    }
+
+    private void TocarSomBatida()
+{
+    SoundPlayer sp = new SoundPlayer();
+    sp.SoundLocation = "caminho do arquivo do som";
+        sp.Play();
+        Thread.Sleep(1000);
+ }
+*/

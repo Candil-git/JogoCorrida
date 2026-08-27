@@ -41,7 +41,7 @@
             PicCarro.BackColor = Color.Transparent;
             PicCarro.BackgroundImage = Properties.Resources.Carro_Corrida_Cinza;
             PicCarro.BackgroundImageLayout = ImageLayout.Stretch;
-            PicCarro.Location = new Point(286, 550);
+            PicCarro.Location = new Point(285, 550);
             PicCarro.Name = "PicCarro";
             PicCarro.Size = new Size(103, 113);
             PicCarro.TabIndex = 0;
@@ -52,7 +52,7 @@
             PicObstaculo.BackColor = Color.Transparent;
             PicObstaculo.BackgroundImage = Properties.Resources.Carro_Obstaculo_Laranja;
             PicObstaculo.BackgroundImageLayout = ImageLayout.Stretch;
-            PicObstaculo.Location = new Point(160, 26);
+            PicObstaculo.Location = new Point(159, 26);
             PicObstaculo.Name = "PicObstaculo";
             PicObstaculo.Size = new Size(103, 113);
             PicObstaculo.TabIndex = 1;
