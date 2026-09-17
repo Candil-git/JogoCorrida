@@ -9,6 +9,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\EfeitoSonoro_BatidaCarro.wav" />
+    <None Remove="Resources\TopGear-_MúsicaTema.wav" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\EfeitoSonoro_BatidaCarro.wav" />
+    <Content Include="Resources\TopGear-_MúsicaTema.wav" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\JogoCorrida\JogoCorrida.csproj" />
   </ItemGroup>
 

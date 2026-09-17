@@ -14,6 +14,7 @@
         public int Faixa2Inicio { get; set; }
         public int Faixa2Fim { get; set; }
         public int YMax { get; set; } = 50;
+        public Elemento Galao{ get; set; }
 
         // MÉTODOS
         public void IniciarJogo()
@@ -24,6 +25,7 @@
             Carro.PosicaoY = YMax - 150;
 
             Obstaculos = FabricaObstaculos(3, 120, 250);
+            CriarGalao();
         }
 
         public List<Elemento> FabricaObstaculos(int qtd, int dmin, int dmax)
@@ -93,6 +95,8 @@
             return false;
         }
 
+
+
         public void MovimentaObstaculos()
         {
             foreach(var ob in Obstaculos)
@@ -101,6 +105,7 @@
 
                 if(ob.PosicaoY > YMax)
                 {
+                    Pontuacao += 10;
                     var rnd = new Random();
                     ob.PosicaoY = -rnd.Next(60, 200); 
                     int novaFaixa = rnd.Next(1, 3);
@@ -108,6 +113,57 @@
                     
                 }
             }
+        }
+
+        public void CriarGalao()
+        {
+            var rnd = new Random();
+            int faixa = rnd.Next(1, 3);
+
+            Galao = new Elemento
+            {
+                Tipo = TipoElemento.Galao,
+                PosicaoX = PosicionaObjeto(faixa),
+                PosicaoY = -100 
+            };
+        }
+
+        public void MovimentaMoeda()
+        {
+            if (Galao != null)
+            {
+                Galao.PosicaoY += 10;
+
+                // Se a moeda saiu da tela por baixo sem ser coletada, reseta ela lá no topo
+                if (Galao.PosicaoY > YMax)
+                {
+                    ResetarGalao();
+                }
+            }
+        }
+
+        public bool ChecarColetaGalao()
+        {
+            if (Galao != null)
+            {
+                // Se estiver na mesma faixa e próximo na vertical (Y)
+                if (ChecaFaixaElemento(Carro) == ChecaFaixaElemento(Galao))
+                {
+                    if (Math.Abs(Carro.PosicaoY - Galao.PosicaoY) <= 15)
+                    {
+                        return true; // Coletou!
+                    }
+                }
+            }
+            return false;
+        }
+
+        public void ResetarGalao()
+        {
+            var rnd = new Random();
+            int faixa = rnd.Next(1, 3);
+            Galao.PosicaoX = PosicionaObjeto(faixa);
+            Galao.PosicaoY = -rnd.Next(200, 500); // Surge com um atraso aleatório
         }
     }
 }

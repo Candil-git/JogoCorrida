@@ -63,6 +63,16 @@ namespace JogoCorridaWinFormsApp.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Buraco {
+            get {
+                object obj = ResourceManager.GetObject("Buraco", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Carro_Corrida_Cinza {
             get {
                 object obj = ResourceManager.GetObject("Carro_Corrida_Cinza", resourceCulture);
@@ -87,6 +97,34 @@ namespace JogoCorridaWinFormsApp.Properties {
             get {
                 object obj = ResourceManager.GetObject("CarroCorrida", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.IO.UnmanagedMemoryStream semelhante a System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream EfeitoSonoro_BatidaCarro {
+            get {
+                return ResourceManager.GetStream("EfeitoSonoro_BatidaCarro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Galao_Combustivel {
+            get {
+                object obj = ResourceManager.GetObject("Galao_Combustivel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.IO.UnmanagedMemoryStream semelhante a System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream MúsicaTema {
+            get {
+                return ResourceManager.GetStream("MúsicaTema", resourceCulture);
             }
         }
         

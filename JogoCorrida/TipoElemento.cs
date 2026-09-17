@@ -4,7 +4,8 @@
     public enum TipoElemento
     {
         Carro,
-        Obstaculo
+        Obstaculo,
+        Galao
     }
         
 }

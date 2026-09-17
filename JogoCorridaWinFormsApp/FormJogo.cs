@@ -8,13 +8,14 @@ namespace JogoCorridaWinFormsApp
     {
         Jogo jogo;
         DateTime tempoUltimaMovimentaca = DateTime.Now;
+        DateTime tempoUltimaPontuacao = DateTime.Now;
         List<PictureBox> pictureBoxes = [];
 
         public FormJogoCorrida(String Nivel)
         {
             InitializeComponent();
 
-            //SomJogoCorrida();
+            SomJogoCorrida();
 
             // Faz parar de piscar
             this.DoubleBuffered = true;
@@ -97,43 +98,90 @@ namespace JogoCorridaWinFormsApp
                 i++;
             }
 
+            if (jogo.Galao != null)
+            {
+                picGalao.Location = new Point(jogo.Galao.PosicaoX, jogo.Galao.PosicaoY);
+            }
+
+            
+            if ((DateTime.Now - tempoUltimaMovimentaca).TotalMilliseconds >= jogo.Velociade)
+            {
+                tempoUltimaMovimentaca = DateTime.Now;
+
+                jogo.MovimentaObstaculos();
+                jogo.MovimentaMoeda();
+
+                
+                if (jogo.ChecarColetaGalao())
+                {
+                    jogo.Pontuacao += 50; 
+                    lblPontuacao.Text = $"Pontuação: {jogo.Pontuacao}";
+                    jogo.ResetarGalao(); 
+                }
+            }
+
+            if ((DateTime.Now - tempoUltimaPontuacao).TotalMilliseconds >= 5000)
+            {
+                jogo.Pontuacao += 2;
+                tempoUltimaPontuacao = DateTime.Now; 
+                lblPontuacao.Text = $"Pontuação: {jogo.Pontuacao}";
+            }
+
             if ((DateTime.Now - tempoUltimaMovimentaca).TotalMilliseconds >= jogo.Velociade)
             {
                 tempoUltimaMovimentaca = DateTime.Now;
                 jogo.MovimentaObstaculos();
+
+                lblPontuacao.Text = $"Pontuação: {jogo.Pontuacao}";
             }
 
             if (jogo.ChecarColisao())
             {
-                GamerOver();
+                GameOver();
                 Application.Exit();
             }
 
         }
 
-        private void GamerOver()
+        private async void GameOver()
         {
+            // 1. Para o timer do jogo imediatamente
             TimerJogo.Enabled = false;
-            // TocarSom();
+
+            // 2. Toca o som em segundo plano (com Play())
+            TocarSomBatida();
+
+            // 3. EFEITO PISCAR ASSÍNCRONO: Pisca o carro sem congelar a tela
+            for (int i = 0; i < 6; i++)
+            {
+                PicCarro.Visible = false;
+                await Task.Delay(120); // Espera 120ms liberando a interface gráfica
+
+                PicCarro.Visible = true;
+                await Task.Delay(120);
+            }
+
+            // 4. Pausa final para o som terminar de tocar
+            await Task.Delay(500);
+
+            // 5. Fecha o jogo
             Close();
+        }
+
+
+        private void TocarSomBatida()
+        {
+            SoundPlayer sp = new SoundPlayer(Properties.Resources.EfeitoSonoro_BatidaCarro);
+            sp.PlaySync();
+        }
+
+        private void SomJogoCorrida()
+        {
+            SoundPlayer sp = new SoundPlayer(Properties.Resources.MúsicaTema);
+            sp.Load();
+            sp.Play();
         }
 
     }
 }
 
-/*
-    private void SomJogoCorrida{
-        SoundPlayer sp = new SoundPlayer();
-        sp.SoundLocation = "caminho do arquivo do som";
-        sp.Play();
-
-    }
-
-    private void TocarSomBatida()
-{
-    SoundPlayer sp = new SoundPlayer();
-    sp.SoundLocation = "caminho do arquivo do som";
-        sp.Play();
-        Thread.Sleep(1000);
- }
-*/
